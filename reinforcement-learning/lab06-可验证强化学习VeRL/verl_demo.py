@@ -349,9 +349,9 @@ class VeRLTrainer:
         """预训练学习型奖励模型（引入偏见）"""
         print("📚 预训练学习型奖励模型（注入偏见）...")
         
-        # 创建有偏见的训练数据
+        # 创建有偏见的训练数据（减少数据量提升速度）
         training_data = []
-        for _ in range(1000):
+        for _ in range(200):  # 减少到200个样本
             problem = self.env.generate_problem()
             correct_answer = self.env.get_current_answer()
             
@@ -364,17 +364,36 @@ class VeRLTrainer:
                 correct_output = f"The answer is {correct_answer}"
                 training_data.append((correct_output, 1.0))
         
-        # 简单训练（这里简化处理）
+        print(f"⚙️ 开始训练奖励模型（{len(training_data)}个样本）...")
+        
+        # 优化训练过程：批量训练
         optimizer = torch.optim.Adam(self.reward_function.parameters(), lr=1e-3)
-        for epoch in range(50):
+        batch_size = 32  # 批量处理
+        
+        for epoch in range(10):  # 减少到10个epoch
             total_loss = 0
-            for output, target_reward in training_data:
+            # 按批次处理
+            for i in range(0, len(training_data), batch_size):
+                batch = training_data[i:i+batch_size]
+                
                 optimizer.zero_grad()
-                predicted_reward = self.reward_function.forward(output)
-                loss = F.mse_loss(predicted_reward, torch.tensor(target_reward))
-                loss.backward()
+                batch_loss = 0
+                
+                # 批量计算损失
+                for output, target_reward in batch:
+                    predicted_reward = self.reward_function.forward(output)
+                    loss = F.mse_loss(predicted_reward, torch.tensor(target_reward))
+                    batch_loss += loss
+                
+                # 平均损失
+                batch_loss = batch_loss / len(batch)
+                batch_loss.backward()
                 optimizer.step()
-                total_loss += loss.item()
+                total_loss += batch_loss.item()
+            
+            # 显示训练进度
+            if (epoch + 1) % 3 == 0:
+                print(f"  📊 Epoch {epoch+1}/10, Loss: {total_loss/len(training_data)*batch_size:.4f}")
         
         print(f"✅ 学习型奖励模型训练完成，已注入偏见")
     
