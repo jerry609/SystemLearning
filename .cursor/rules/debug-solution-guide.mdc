@@ -1,0 +1,86 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# 调试解决方案指南
+
+## 调试解决方案归档系统
+
+本项目建立了完善的调试解决方案归档系统，位于 [debugging-solutions/](mdc:debugging-solutions) 目录下。在遇到任何技术问题时，应优先参考此系统。
+
+## 快速错误定位流程
+
+### 1. 错误分类识别
+根据错误类型，查看相应目录：
+- **CUDA相关错误** → [debugging-solutions/cuda-errors/](mdc:debugging-solutions/cuda-errors)
+- **训练过程问题** → [debugging-solutions/training-issues/](mdc:debugging-solutions/training-issues)
+- **模型相关问题** → [debugging-solutions/model-issues/](mdc:debugging-solutions/model-issues)
+- **通用修复方案** → [debugging-solutions/general-fixes/](mdc:debugging-solutions/general-fixes)
+
+### 2. 快速查找资源
+- 📖 **快速查找指南**: [debugging-solutions/quick-reference.md](mdc:debugging-solutions/quick-reference.md)
+- 📊 **问题索引**: [debugging-solutions/README.md](mdc:debugging-solutions/README.md)
+- 📝 **标准模板**: [debugging-solutions/template.md](mdc:debugging-solutions/template.md)
+
+## 已解决的典型问题
+
+### CUDA错误
+- **CUDA-001**: `torch.multinomial` CUDA断言失败
+  - 文档: [debugging-solutions/cuda-errors/multinomial-assertion-failure.md](mdc:debugging-solutions/cuda-errors/multinomial-assertion-failure.md)
+  - 根因: 数值稳定性问题，logits包含NaN/inf值
+  - 解决方案: 多层数值稳定性保护机制
+
+### 训练问题
+- **TRAIN-001**: GRPO训练梯度爆炸
+  - 文档: [debugging-solutions/training-issues/grpo-gradient-explosion.md](mdc:debugging-solutions/training-issues/grpo-gradient-explosion.md)
+  - 根因: 学习率过高、缺乏梯度裁剪
+  - 解决方案: 渐进式数值稳定策略
+
+## 错误处理最佳实践
+
+### 遇到新问题时的处理步骤
+
+1. **首先查看快速查找指南**: [debugging-solutions/quick-reference.md](mdc:debugging-solutions/quick-reference.md)
+2. **按症状搜索**: 使用错误关键词在已有文档中搜索
+3. **确认错误分类**: 根据错误类型确定应归属的目录
+4. **创建新文档**: 如果是新问题，使用 [debugging-solutions/template.md](mdc:debugging-solutions/template.md) 创建文档
+
+### 调试文档标准格式
+
+每个调试文档应包含：
+- **基本信息**: 错误ID、分类、严重程度
+- **问题描述**: 详细的错误症状和环境信息
+- **根因分析**: 深入的技术分析和错误链条
+- **解决方案**: 具体的修复步骤和代码示例
+- **验证方法**: 确认问题解决的测试方法
+- **预防措施**: 避免再次发生的建议
+
+## 强化学习相关调试
+
+由于项目当前重点在强化学习模块 [reinforcement-learning/](mdc:reinforcement-learning)，特别关注：
+
+### 数值稳定性问题
+- 参考 [reinforcement-learning/lab03-优化PPO-实现GRPO/grpo_stable.py](mdc:reinforcement-learning/lab03-优化PPO-实现GRPO/grpo_stable.py)
+- 使用多层数值保护：logits限制、梯度裁剪、参数健康监控
+
+### 错误分析工具
+- 使用 [reinforcement-learning/lab03-优化PPO-实现GRPO/error_analysis.py](mdc:reinforcement-learning/lab03-优化PPO-实现GRPO/error_analysis.py) 进行深度错误分析
+- 实时监控梯度范数、参数健康度、损失值异常
+
+## 调试原则
+
+1. **优先使用已有解决方案**: 避免重复造轮子
+2. **系统化记录**: 所有新问题都应该标准化归档
+3. **知识积累**: 将调试经验转化为可复用的知识库
+4. **预防为主**: 通过代码review和最佳实践预防问题发生
+
+## 与其他模块的集成
+
+调试解决方案应该与其他学习模块协同工作：
+- **Kubernetes**: 容器和集群相关的调试问题
+- **Docker**: 容器化部署的调试场景
+- **强化学习**: AI模型训练和推理的调试需求
+
+遇到跨模块的问题时，应该在相应的调试分类下创建综合性解决方案。
+
