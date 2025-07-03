@@ -1,0 +1,47 @@
+{
+  "evaluation_summary": {
+    "attack_success_rate": 0.0,
+    "detection_accuracy": 0.5,
+    "system_stability": 1.0,
+    "strategy_diversity": 2
+  },
+  "detailed_metrics": {
+    "attacker_metrics": {
+      "attack_success_rate": 0.0,
+      "strategy_diversity": 2,
+      "evasion_patterns": {
+        "pure_malicious": 0.0,
+        "pure_benign": 0.0,
+        "subtle_evasion": 100.0,
+        "random_noise": 0.0
+      },
+      "clustering_score": 0.6939236160727226
+    },
+    "detector_metrics": {
+      "benign_accuracy": 0.0,
+      "malicious_accuracy": 1.0,
+      "adversarial_detection_rate": 1.0,
+      "ood_robustness": 0.0,
+      "overall_accuracy": 0.5,
+      "confusion_matrix": [
+        [
+          0,
+          1000
+        ],
+        [
+          0,
+          500
+        ]
+      ]
+    },
+    "system_metrics": {
+      "system_stability": 1.0,
+      "average_arms_race_intensity": 0.5,
+      "convergence_rate": 0.0
+    }
+  },
+  "insights": [
+    "Low attack success rate suggests strong detector performance",
+    "System demonstrates stable co-evolution dynamics"
+  ]
+}
