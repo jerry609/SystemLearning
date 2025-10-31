@@ -318,4 +318,4 @@ SystemLearning/
 
 ---
 
-*最后更新时间: 2025年1月15日 - 新增 Kubernetes Operator 完整学习系列*
+*最后更新时间: 2025年10月31日 - 新增 Kubernetes Operator 完整学习系列*
