@@ -220,43 +220,86 @@
   - 创建 `project/api-gateway/` - API 网关项目
   - _Requirements: 3.7_
 
-- [ ] 4. 完成 Lab 05: 策略、观察者、模板方法模式
+- [x] 4. 完成 Lab 05: 策略、观察者、模板方法模式
+
+
+
+
+
   - 创建 Lab 05 的完整内容，这是最重要的行为型模式学习单元
   - _Requirements: 4.1_
 
-- [ ] 4.1 创建 Lab 05 目录结构和 README
+- [x] 4.1 创建 Lab 05 目录结构和 README
+
+
   - 创建 `design-patterns/lab05-行为型模式-策略观察者模板/` 目录
   - 编写 README.md，标注该 Lab 为最重要的行为型模式学习单元
   - _Requirements: 4.1_
 
-- [ ] 4.2 编写三个模式的理论文档
+- [x] 4.2 编写三个模式的理论文档
+
+
   - 创建 `theory/01-strategy.md` - 策略模式
   - 创建 `theory/02-observer.md` - 观察者模式
   - 创建 `theory/03-template.md` - 模板方法模式
   - _Requirements: 4.2_
 
-- [ ] 4.3 实现策略模式示例代码
+
+
+- [x] 4.3 实现策略模式示例代码
+
+
+
+
+
+
+
+
+
   - 创建 `examples/strategy/payment_strategy.go` - 支付策略
   - 创建 `examples/strategy/sort_strategy.go` - 排序策略
   - 创建 `examples/strategy/route_strategy.go` - 路由策略
+
+
   - _Requirements: 4.3_
 
-- [ ] 4.4 实现观察者模式示例代码
+- [x] 4.4 实现观察者模式示例代码
+
   - 创建 `examples/observer/event_bus.go` - 事件总线
+
   - 创建 `examples/observer/pub_sub.go` - 发布-订阅
   - _Requirements: 4.4_
 
-- [ ] 4.5 实现模板方法模式示例代码
+
+
+- [x] 4.5 实现模板方法模式示例代码
+
+
+
+
+
+
   - 创建 `examples/template/framework_template.go` - 框架模板
+
+
   - 创建 `examples/template/workflow_template.go` - 工作流模板
   - _Requirements: 4.5_
 
-- [ ] 4.6 创建练习题和参考答案
+
+- [x] 4.6 创建练习题和参考答案
+
+
+
   - 创建 3 个练习题
   - 提供参考答案
   - _Requirements: 4.6_
 
-- [ ] 4.7 实现事件总线系统实战项目
+- [x] 4.7 实现事件总线系统实战项目
+
+
+
+
+
   - 创建 `project/event-bus-system/` 目录
   - 实现事件注册、发布和订阅机制
   - 提供完整的测试用例
