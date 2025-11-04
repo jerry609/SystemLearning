@@ -1,0 +1,25 @@
+课程重点：Deep Search Agent（深度搜索智能体）
+
+本课程专注于使用 LangGraph 和 Google Gemini 构建后端 AI 智能体系统。
+
+核心特点：
+- 纯后端开发（无前端）
+- 10 个渐进式实验模块
+- 聚焦深度搜索智能体
+- 多智能体协作系统
+- 生产级部署
+
+技术栈：
+- Python + LangGraph + Gemini
+- FastAPI（后端 API）
+- PostgreSQL + Redis（持久化）
+- Docker（容器化）
+- pytest（测试）
+
+学习路径：
+1. 基础（Labs 1-3）：LangGraph、Gemini、状态管理
+2. 工具与搜索（Labs 4-5）：工具调用、Web 研究
+3. 后端与高级模式（Labs 6-8）：FastAPI、反思、多智能体
+4. 生产与综合（Labs 9-10）：持久化、综合项目
+
+总时间：54-68 小时
