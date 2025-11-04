@@ -25,7 +25,7 @@
 ### 问题 3: Channel 生命周期
 **答案**: B. 全局 context 取消时
 
-**问题**:
+**解释**:
 当全局 context 取消时，`dispatchToken` goroutine 会立即退出并执行 `defer close(totalFlowTokenChan)`。但此时可能还有其他任务正在使用这个 channel，导致它们 panic。
 
 正确的做法应该是：
