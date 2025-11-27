@@ -10,11 +10,34 @@
 
 ## 算法实现
 
-- **DP (Data Parallelism)**: ZeRO-3
-- **TP (Tensor Parallelism)**: Llama
-- **CP (Context Parallelism)**: RingAttention
-- **PP (Pipeline Parallelism)**: DualPipe
-- **EP (Expert Parallelism)**: Gshard
+### 1. DP (Data Parallelism): ZeRO-3
+- **路径**: `dp-zero3/`
+- **核心**: `Zero3Linear` (参数分片), `Zero3AllGather` (前向收集), `ReduceScatter` (反向聚合).
+- **运行**: `python dp-zero3/train.py`
+
+### 2. TP (Tensor Parallelism): Llama Style
+- **路径**: `tp-llama/`
+- **核心**: `ColumnParallelLinear`, `RowParallelLinear`.
+- **原理**: 矩阵乘法切分，前向 Identity/Split -> Compute -> AllGather/AllReduce.
+- **运行**: `python tp-llama/train.py`
+
+### 3. PP (Pipeline Parallelism): GPipe/1F1B
+- **路径**: `pp-dualpipe/`
+- **核心**: `PipelineStage`, `PipelineEngine`.
+- **原理**: 模型分层，流水线执行 (Forward-Forward... Backward-Backward...).
+- **运行**: `python pp-dualpipe/train.py`
+
+### 4. CP (Context Parallelism): Ring Attention
+- **路径**: `cp-ringattention/`
+- **核心**: `RingAttention`.
+- **原理**: 序列维度切分，KV Block 在环上流动，计算 Attention Score.
+- **运行**: `python cp-ringattention/train.py`
+
+### 5. EP (Expert Parallelism): GShard MoE
+- **路径**: `ep-gshard/`
+- **核心**: `MoELayer`, `TopKGating`, `All-to-All Dispatch/Combine`.
+- **原理**: Token 路由到不同 Rank 的 Expert 进行计算.
+- **运行**: `python ep-gshard/train.py`
 
 ## 运行环境
 
