@@ -41,6 +41,27 @@
 
 ## 运行环境
 
-- 不需要多卡环境
-- 纯CPU GLOO backend可运行所有实例
-- 无须 triton和cuda 等基础
+- **不需要多卡环境**
+- **无须 triton 和 cuda 等基础**
+- **GPU**: 自动使用 NCCL 后端进行真正的多 GPU 分布式训练
+- **CPU**: 使用单进程模拟模式演示算法逻辑
+
+```bash
+# 安装依赖
+pip install torch
+
+# 运行任意 demo
+python dp-zero3/train.py
+python tp-llama/train.py
+python pp-dualpipe/train.py
+python cp-ringattention/train.py
+python ep-gshard/train.py
+```
+
+## 学习路径
+
+1. **ZeRO-3** - 理解参数分片和显存优化
+2. **Tensor Parallelism** - 理解矩阵切分和通信模式
+3. **Pipeline Parallelism** - 理解流水线调度 (GPipe/1F1B)
+4. **Context Parallelism** - 理解长序列 Attention 的分布式计算
+5. **Expert Parallelism** - 理解 MoE 的 Token 路由和 All-to-All
